@@ -1,5 +1,8 @@
 # Linkerd
 
+* [Github](https://github.com/linkerd/linkerd2)
+* [Docs](https://linkerd.io/2.11/overview/)
+
 ## Installation
 
 ### Install linkerd
@@ -32,19 +35,19 @@ echo "source <(linkerd completion bash) >> ~/.bashrc"
 source <(linkerd completion zsh)
 ```
 
-## Basic
+# Basic
 
-### Inject
+## Inject
 
 Update the deployment annotations `linkerd.io/inject: enabled`. So the linkerd control plane knows to inject a side car during pod creation.
 ```bash
 kubectl get deploy -o yaml | linkerd inject - | kubectl apply -f -
 ```
 
-## Traffic Manipulation
+# Traffic Manipulation
 
-### Split Traffic
-Send 33% from the traffict that goes to `svc-a` into `svc-b`
+## Split Traffic
+Send 33% from the traffic that goes to `svc-a` into `svc-b`
 ```bash
 cat <<EOF | kubectl apply -f -
 apiVersion: split.smi-spec.io/v1alpha1
@@ -61,8 +64,8 @@ spec:
 EOF
 ```
 
-### Timeouts
-Set http timeout for 10 sec on all the request that are coming into the service
+## Timeouts
+Set HTTP timeout for 10 sec on all the requests that are coming into the service
 ```bash
 cat << EOF | kubectl apply -f -
 apiVersion: linkerd.io/v1alpha2
@@ -80,8 +83,8 @@ EOF
 ```
 
 
-### Retries
-For idempotent routes with empty body:
+## Retries
+For idempotent routes with an empty body:
 ```bash
 cat << EOF | kubectl apply -f -
 apiVersion: linkerd.io/v1alpha2
@@ -120,10 +123,10 @@ EOF
 [More](https://linkerd.io/2.11/reference/service-profiles/) about service profiles
 
 
-## Extentions
+# Extensions
 
-### Viz
-Viz extention adds metrics stack into the cluster 
+## Viz
+Viz extension adds metrics stack into the cluster 
 ```bash
 linkerd viz install | kubectl apply -f -
 ```
